@@ -1,0 +1,212 @@
+/* Updated BaseNode.css with larger handles */
+
+.base-node {
+  background: var(--node-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  border: 1.5px solid var(--border-color);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  color: var(--text-primary);
+  font-family: "Outfit", "Inter", sans-serif;
+  min-width: 210px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.base-node:hover {
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.base-node-header {
+  background: var(--primary-gradient);
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px 12px 0 0;
+}
+
+.delete-node-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-node-btn:hover {
+  color: #fff;
+}
+
+.base-node-content {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.base-node label {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  gap: 6px;
+}
+
+.base-node input,
+.base-node select,
+.base-node textarea {
+  background: var(--surface-hover);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.base-node input:focus,
+.base-node select:focus,
+.base-node textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: var(--surface-color);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* ============================================ */
+/* ENLARGED HANDLES - Easier to click when zoomed out */
+/* ============================================ */
+
+/* Make handles larger and more visible */
+.react-flow__handle {
+  width: 14px !important;
+  height: 14px !important;
+  background: var(--primary-color) !important;
+  border: 3px solid var(--surface-color) !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease !important;
+  z-index: 10 !important;
+  cursor: crosshair !important;
+}
+
+/* Even larger on hover for easier selection */
+.react-flow__handle:hover {
+  width: 18px !important;
+  height: 18px !important;
+  background: var(--primary-gradient) !important;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3) !important;
+  border: 3px solid var(--surface-color) !important;
+}
+
+/* Active/dragging state */
+.react-flow__handle:active {
+  width: 16px !important;
+  height: 16px !important;
+  background: #9333ea !important;
+}
+
+/* Position adjustments for better alignment */
+.react-flow__handle-left {
+  left: -7px !important;
+}
+
+.react-flow__handle-right {
+  right: -7px !important;
+}
+
+.react-flow__handle-top {
+  top: -7px !important;
+}
+
+.react-flow__handle-bottom {
+  bottom: -7px !important;
+}
+
+/* Connection line while drawing - make it thicker */
+.react-flow__connection-path {
+  stroke-width: 3px !important;
+  stroke: var(--primary-color) !important;
+  stroke-dasharray: 5, 5 !important;
+}
+
+/* Edge styling - make edges thicker */
+.react-flow__edge-path {
+  stroke-width: 2.5px !important;
+  transition: stroke 0.2s ease;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke-width: 4px !important;
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke-width: 4px !important;
+}
+
+/* Make the connection line easier to see */
+.react-flow__connection {
+  stroke-width: 3px !important;
+}
+
+/* Handle labels (for variable handles on Text node) */
+.handle-label {
+  position: absolute;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 600;
+  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.12);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 4px;
+  padding: 1px 6px;
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  z-index: 10;
+}
+
+.handle-label--left {
+  left: 14px;
+}
+
+.handle-label--right {
+  right: 14px;
+}
+
+/* Make the entire handle hitbox larger */
+.react-flow__handle::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  background: transparent;
+}

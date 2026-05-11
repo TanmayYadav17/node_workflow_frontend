@@ -1,0 +1,242 @@
+:root {
+  --bg-color: #0f172a;
+  --surface-color: #1c1c24;
+  --surface-hover: #272733;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --primary-color: #6366f1;
+  --primary-gradient: linear-gradient(135deg, #4f46e5, #9333ea);
+  --node-bg: #1e293b;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --pill-bg: rgba(138, 75, 255, 0.15);
+  --pill-color: #a78bfa;
+  --pill-border: rgba(138, 75, 255, 0.3);
+  /* Edge colors - Dark mode (lighter for better visibility) */
+  --edge-color: #94a3b8;
+  --edge-selected-color: #a78bfa;
+  --edge-animated-color: #c084fc;
+}
+
+.light-mode {
+  --bg-color: #f1f5f9;
+  --surface-color: #ffffff;
+  --surface-hover: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --primary-color: #2563eb;
+  --primary-gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  --node-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --pill-bg: rgba(37, 99, 235, 0.1);
+  --pill-color: #2563eb;
+  --pill-border: rgba(37, 99, 235, 0.2);
+  /* Edge colors - Light mode (darker for better contrast) */
+  --edge-color: #64748b;
+  --edge-selected-color: #6366f1;
+  --edge-animated-color: #4f46e5;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Edge styling */
+.react-flow__edge-path {
+  stroke: var(--edge-color) !important;
+  stroke-width: 2 !important;
+  transition: stroke 0.2s ease;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--edge-selected-color) !important;
+  stroke-width: 3 !important;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke: var(--edge-animated-color) !important;
+  animation: dashdraw 0.5s linear infinite;
+}
+
+/* Animated edge dash animation */
+@keyframes dashdraw {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Edge connection line while drawing */
+.react-flow__connection-path {
+  stroke: var(--primary-color) !important;
+  stroke-width: 2 !important;
+}
+
+/* Edge marker (arrow) styling */
+.react-flow__edge-path + .react-flow__edge-marker {
+  fill: var(--edge-color) !important;
+  stroke: var(--edge-color) !important;
+}
+
+.react-flow__edge.selected .react-flow__edge-marker {
+  fill: var(--edge-selected-color) !important;
+  stroke: var(--edge-selected-color) !important;
+}
+
+/* Edge label styling if you add labels later */
+.react-flow__edge-text {
+  fill: var(--text-secondary) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+.react-flow__edge-textbg {
+  fill: var(--surface-color) !important;
+  stroke: var(--border-color) !important;
+  stroke-width: 1 !important;
+}
+
+/* Hover effect on edges */
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: var(--primary-color) !important;
+  stroke-width: 3 !important;
+  cursor: pointer;
+}
+
+.react-flow__edge:hover .react-flow__edge-marker {
+  fill: var(--primary-color) !important;
+  stroke: var(--primary-color) !important;
+}
+
+.draggable-node {
+  cursor: grab;
+  min-width: 90px;
+  height: 38px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px var(--shadow-color);
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.2s ease-in-out;
+}
+
+.draggable-node:hover {
+  transform: translateY(-1px);
+  background: var(--surface-hover);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+  border-color: var(--primary-color);
+}
+
+.draggable-node:active {
+  cursor: grabbing;
+}
+
+.draggable-node span {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.react-flow__background {
+  background-color: var(--bg-color);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+.react-flow__controls {
+  box-shadow: 0 4px 15px var(--shadow-color) !important;
+  border: 1px solid var(--border-color) !important;
+  background: var(--surface-color) !important;
+}
+
+.react-flow__controls-button {
+  border-bottom: 1px solid var(--border-color) !important;
+  fill: var(--text-secondary) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--surface-hover) !important;
+}
+
+.react-flow__node {
+  border-radius: 15px !important;
+}
+
+/* Edge context menu styling */
+.edge-context-menu {
+  position: fixed;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  z-index: 2000;
+  min-width: 150px;
+  overflow: hidden;
+}
+
+.edge-context-menu-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+}
+
+.edge-context-menu-item:hover {
+  background: var(--surface-hover);
+}
+
+.edge-context-menu-item.delete {
+  color: #ef4444;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.edge-context-menu-item.delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.edge-context-menu-item.cancel {
+  color: var(--text-secondary);
+}
+
+.edge-context-menu-item.cancel:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
